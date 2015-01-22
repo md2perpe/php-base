@@ -12,3 +12,5 @@ RUN pecl install zip && echo "extension=zip.so" >> /usr/local/lib/php.ini
 RUN docker-php-ext-install pdo_mysql
 
 
+# Copy source code into new image
+ONBUILD COPY . /var/www
