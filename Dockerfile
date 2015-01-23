@@ -12,5 +12,19 @@ RUN pecl install zip && echo "extension=zip.so" >> /usr/local/lib/php.ini
 RUN docker-php-ext-install pdo_mysql
 
 
+# Install git
+RUN apt-get update
+RUN apt-get install -q -y git
+
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php
+RUN chmod +x composer.phar && mv composer.phar /usr/local/bin/composer
+
+
+
+
 # Copy source code into new image
 ONBUILD COPY . /var/www
+
+# Run composer
+ONBUILD RUN composer install
