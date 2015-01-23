@@ -27,4 +27,4 @@ RUN chmod +x composer.phar && mv composer.phar /usr/local/bin/composer
 ONBUILD COPY . /var/www
 
 # Run composer
-ONBUILD RUN [ -f composer.json ] && composer install
+ONBUILD RUN "[ -f composer.json ] && composer install"
